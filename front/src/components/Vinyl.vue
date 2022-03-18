@@ -9,7 +9,7 @@
 import Unchecked from '../assets/unchecked.svg'
 import Checked from '../assets/check.svg'
 export default {
-  name: 'Task',
+  name: 'Vinyl',
   props: {
     task: Object
   },

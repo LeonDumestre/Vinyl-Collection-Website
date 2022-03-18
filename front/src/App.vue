@@ -1,31 +1,24 @@
 <script setup>
-import Task from './components/Task.vue'
+import Vinyl from './components/Vinyl.vue'
 </script>
 
 <template>
-  <ul>
-    <li><router-link to="/">Home</router-link></li>
-    <li><router-link to="/about">About</router-link></li>
-  </ul>
-  <router-view></router-view>
+    <header class="header black-bg">
+      <a href="/" class="logo"><b>VINYL<span>COLLECTION</span></b></a>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <router-link to="/add"><a class="btn btn-theme">Ajouter un vinyle</a></router-link>
+        </ul>
+      </div>
+    </header>
+
+    <div id="container">
+      <router-view></router-view>
+    </div>
+
 </template>
 
 <style>
-@import './style.css';
-</style>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  width: 50vw;
-  margin: auto;
-  margin-top: 60px;
-}
-.task {
-  display: flex;
-}
+@import './css/bootstrap.min.css';
+@import './css/style.css';
 </style>
