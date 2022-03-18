@@ -1,58 +1,18 @@
+<script setup>
+import Task from './components/Task.vue'
+</script>
+
 <template>
-  <div>
-    <h1>Mes Taches</h1>
-    <form @submit.prevent="addTask">
-      <input type="text" placeholder="Text" v-model="value" />
-      <button type="submit">Ajouter une tache</button>
-    </form>
-    <Task
-        v-for="(task, index) in tasks"
-        :key="index"
-        :task="task"
-        @toggle="toggleCheck(task)"
-        @delete="deleteTask(index)"
-    />
-    <h2>Stats</h2>
-    <p>{{ done }}/{{ total }}({{ avg }}%)</p>
-  </div>
+  <ul>
+    <li><router-link to="/">Home</router-link></li>
+    <li><router-link to="/about">About</router-link></li>
+  </ul>
+  <router-view></router-view>
 </template>
 
-<script>
-import Task from './components/Task.vue';
-export default {
-  name: 'App',
-  components: {
-    Task
-  },
-  data: () => ({
-    value: '',
-    tasks: [],
-  }),
-  computed: {
-    total() {
-      return this.tasks.length;
-    },
-    done() {
-      return this.tasks.filter(task => task.checked).length
-    },
-    avg() {
-      return (this.total > 0 ? this.done / this.total * 100 : 0).toFixed(2);
-    }
-  },
-  methods: {
-    addTask() {
-      this.tasks.push({ name: this.value, checked: false });
-      this.value = '';
-    },
-    deleteTask(index) {
-      this.tasks.splice(index, 1);
-    },
-    toogleCheck(task) {
-      task.checked = !task.checked;
-    }
-  }
-}
-</script>
+<style>
+@import './style.css';
+</style>
 
 <style>
 #app {
