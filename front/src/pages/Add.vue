@@ -1,21 +1,23 @@
 <template>
   <h2>Ajouter un vinyle</h2>
   <form @submit.prevent="addVinyl">
-    <input type="text" placeholder="name" v-model="name" required />
-    <input type="file" required />
-    <input type="text" placeholder="artist" v-model="artist" required />
-    <input type="text" placeholder="label" v-model="label" required />
-    <input type="date" placeholder="release_date" v-model="release_date" required />
-    <input type="date" placeholder="purchase_date" v-model="purchase_date" required />
-    <input type="number" placeholder="release_price" v-model="release_price" required />
-    <input type="number" placeholder="current_price" v-model="current_price" required />
-    <input type="number" placeholder="quantity" v-model="quantity" required />
+    <input type="text" placeholder="name" v-model="name" required/>
+    <input type="file" required/>
+    <input type="text" placeholder="artist" v-model="artist" required/>
+    <input type="text" placeholder="label" v-model="label" required/>
+    <input type="date" placeholder="release_date" v-model="release_date" required/>
+    <input type="date" placeholder="purchase_date" v-model="purchase_date" required/>
+    <input type="number" placeholder="release_price" v-model="release_price" required/>
+    <input type="number" placeholder="current_price" v-model="current_price" required/>
+    <input type="number" placeholder="quantity" v-model="quantity" required/>
     <button type="submit">Ajouter le vinyle</button>
   </form>
 </template>
 
 <script>
 import Vinyl from '../components/Vinyl.vue';
+import axios from "axios";
+
 export default {
   name: "Add",
   components: {
@@ -33,7 +35,11 @@ export default {
   }),
   methods: {
     addVinyl() {
-      this.Vinyl.push({name: this.value, checked: false});
+      axios.post('http://localhost:3001/vinyl/add').then(response => {
+        console.log(response.data)
+      }).catch(err => {
+        console.log(err)
+      })
       this.value = '';
     }
   }
