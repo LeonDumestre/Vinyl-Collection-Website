@@ -1,30 +1,35 @@
-<template>
-  <ul class="container inline-b">
-    <router-link to="/details/1">
-      <div class="item inline-b-item">
-        <img src="../assets/1.jpg" width="200" height="200">
-        <label>Legend</label>
-      </div>
-    </router-link>
-    <router-link to="/details/2"><li class="item inline-b-item">2</li></router-link>
-    <router-link to="/details/3"><li class="item inline-b-item">3</li></router-link>
-    <router-link to="/details/4"><li class="item inline-b-item">4</li></router-link>
-    <router-link to="/details/5"><li class="item inline-b-item">5</li></router-link>
-    <router-link to="/details/6"><li class="item inline-b-item">6</li></router-link>
-    <router-link to="/details/7"><li class="item inline-b-item">7</li></router-link>
-    <router-link to="/details/8"><li class="item inline-b-item">8</li></router-link>
-  </ul>
-</template>
-
 <script>
+import axios from 'axios'
 import Vinyl from '../components/Vinyl.vue';
 export default {
   name: 'Home',
   components: {
     Vinyl
-  }
+  },
+  data: () => ({
+    vinyls: []
+  })
 }
+
+axios.post('http://localhost:3001/vinyl/add').then(response => {
+  this.vinyls = response.data
+}).catch(err => {
+  console.log(err)
+})
 </script>
+
+<template>
+  <ul class="container inline-b">
+
+    <router-link v-for="vinyl in vinyls" :to="'/details/'+vinyl.id">
+      <div class="item inline-b-item">
+        <img :src="'../assets/'+vinyl.id+'1.jpg'" width="200" height="200" :alt="vinyl.name">
+        <label>{{vinyl.name}}</label>
+      </div>
+    </router-link>
+
+  </ul>
+</template>
 
 <style>
 
