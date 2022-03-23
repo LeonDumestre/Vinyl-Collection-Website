@@ -29,6 +29,10 @@ export const Vinyl = sequelize.define('Vinyl', {
         type: DataTypes.INTEGER,
         allowNull: true
     },
+    purchase_price: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: true
@@ -57,3 +61,6 @@ export const Track = sequelize.define('Track', {
         allowNull: false
     }
 });
+
+Vinyl.sync();
+Track.sync();

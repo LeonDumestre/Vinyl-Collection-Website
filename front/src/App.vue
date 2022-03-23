@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios'
 
-axios.get('http://localhost:3001/tracks').then(response => {
+axios.post('http://localhost:3001/vinyl/add').then(response => {
 console.log(response.data)
 }).catch(err => {
   console.log(err)

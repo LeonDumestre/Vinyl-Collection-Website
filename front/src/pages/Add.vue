@@ -24,10 +24,13 @@
       <button type="submit">Ajouter le vinyle</button>
     </form>
   </div>
+
 </template>
 
 <script>
 import Vinyl from '../components/Vinyl.vue';
+import axios from "axios";
+
 export default {
   name: "Add",
   components: {
@@ -46,7 +49,11 @@ export default {
   }),
   methods: {
     addVinyl() {
-      this.Vinyl.push({name: this.value, checked: false});
+      axios.post('http://localhost:3001/vinyl/add').then(response => {
+        console.log(response.data)
+      }).catch(err => {
+        console.log(err)
+      })
       this.value = '';
     }
   }
