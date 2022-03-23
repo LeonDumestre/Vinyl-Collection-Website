@@ -1,11 +1,4 @@
 <script setup>
-import axios from 'axios'
-
-axios.post('http://localhost:3001/vinyl/add').then(response => {
-console.log(response.data)
-}).catch(err => {
-  console.log(err)
-})
 
 </script>
 

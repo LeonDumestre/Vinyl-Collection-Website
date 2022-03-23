@@ -1,6 +1,6 @@
 <template>
   <div class="container form">
-  <h2>Ajouter un vinyle</h2>
+    <h2>Ajouter un vinyle</h2>
     <form @submit.prevent="addVinyl">
 
       <div class="row">
@@ -78,7 +78,6 @@ export default {
       }).catch(err => {
         console.log(err)
       })
-      this.value = '';
     }
   }
 }
