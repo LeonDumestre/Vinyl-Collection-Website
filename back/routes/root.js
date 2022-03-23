@@ -11,13 +11,20 @@ export default async function (fastify, opts) {
         reply.send(await Vinyl.findByPk(request.params.id));
     })
     fastify.post('/vinyl/add', async function (request, reply) {
-        reply.send(request.body)
-        if (!request.body?.name) {
+        if (!request.body?.name && !request.body?.artist && !request.body?.label && !request.body?.month_release_date
+            && !request.body?.year_release_date && !request.body?.month_purchase_date && !request.body?.year_purchase_date
+            && !request.body?.release_price && !request.body?.current_price && !request.body?.purchase_price && !request.body?.quantity) {
             reply.status(400).send('Le nom est obligatoire')
         } else {
             reply.send(await Vinyl.create({
                 name: request.body.name,
-                state: false
+                release_date: request.body.month_release_date + "/" + request.body.year_release_date,
+                purchase_date: request.body.month_purchase_date + "/" + request.body.year_purchase_date,
+                release_price: request.body.release_price,
+                current_price: request.body.current_price,
+                quantity: request.body.quantity,
+                artist: request.body.artist,
+                label: request.body.label
             }))
         }
     })
