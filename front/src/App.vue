@@ -7,6 +7,7 @@ axios.get('http://localhost:3001/tracks').then(response => {
 }).catch(err => {
   console.log(err)
 })
+
 </script>
 
 <template>
