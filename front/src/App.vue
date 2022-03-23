@@ -1,9 +1,8 @@
 <script setup>
-import Task from './components/Task.vue'
 import axios from 'axios'
 
 axios.get('http://localhost:3001/tracks').then(response => {
-  console.log(response.data)
+console.log(response.data)
 }).catch(err => {
   console.log(err)
 })
@@ -11,17 +10,22 @@ axios.get('http://localhost:3001/tracks').then(response => {
 </script>
 
 <template>
-  <ul>
-    <li>
-      <router-link to="/">Home</router-link>
-    </li>
-    <li>
-      <router-link to="/about">About</router-link>
-    </li>
-  </ul>
-  <router-view></router-view>
+    <header class="header black-bg">
+      <a href="/" class="logo"><b>VINYL<span>COLLECTION</span></b></a>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <router-link to="/add"><a class="btn btn-theme">Ajouter un vinyle</a></router-link>
+        </ul>
+      </div>
+    </header>
+
+    <div id="container">
+      <router-view></router-view>
+    </div>
+
 </template>
 
 <style>
-@import './style.css';
+@import './css/bootstrap.min.css';
+@import './css/style.css';
 </style>
