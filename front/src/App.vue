@@ -1,5 +1,11 @@
 <script setup>
-import Vinyl from './components/Vinyl.vue'
+import axios from 'axios'
+
+axios.get('http://localhost:3001/tracks').then(response => {
+console.log(response.data)
+}).catch(err => {
+  console.log(err)
+})
 </script>
 
 <template>

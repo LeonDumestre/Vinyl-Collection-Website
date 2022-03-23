@@ -59,6 +59,13 @@ a.btn {
     margin-top: 12px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    max-width:300px;
+    margin:0 auto;
+}
+
 /*________________________________MON CSS________________________________*/
 
 ul li {
