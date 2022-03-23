@@ -1,6 +1,11 @@
 <template>
   <ul class="container inline-b">
-    <router-link to="/details/1"><li class="item inline-b-item">1</li></router-link>
+    <router-link to="/details/1">
+      <div class="item inline-b-item">
+        <img src="../assets/1.jpg" width="200" height="200">
+        <label>Legend</label>
+      </div>
+    </router-link>
     <router-link to="/details/2"><li class="item inline-b-item">2</li></router-link>
     <router-link to="/details/3"><li class="item inline-b-item">3</li></router-link>
     <router-link to="/details/4"><li class="item inline-b-item">4</li></router-link>
