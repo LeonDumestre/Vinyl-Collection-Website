@@ -33,6 +33,10 @@ export const Vinyl = sequelize.define('Vinyl', {
         type: DataTypes.INTEGER,
         allowNull: true
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: true

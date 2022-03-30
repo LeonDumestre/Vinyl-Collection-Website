@@ -16,12 +16,19 @@ export default async function (fastify, opts) {
             && !request.body?.release_price && !request.body?.current_price && !request.body?.purchase_price && !request.body?.quantity) {
             reply.status(400).send('Le nom est obligatoire')
         } else {
+            let releaseDate = request.body.month_release_date + "/" + request.body.year_release_date === "/" ? null : request.body.month_release_date + "/" + request.body.year_release_date
+            let purchaseDate = request.body.month_purchase_date + "/" + request.body.year_purchase_date === "/" ? null : request.body.month_purchase_date + "/" + request.body.year_purchase_date
+            let releasePrice = request.body.release_price === 0 ? null : request.body.release_price
+            let currentPrice = request.body.current_price === 0 ? null : request.body.current_price
+            let purchasePrice = request.body.purchase_price === 0 ? null : request.body.purchase_price
+
             reply.send(await Vinyl.create({
                 name: request.body.name,
-                release_date: request.body.month_release_date + "/" + request.body.year_release_date,
-                purchase_date: request.body.month_purchase_date + "/" + request.body.year_purchase_date,
-                release_price: request.body.release_price,
-                current_price: request.body.current_price,
+                release_date: releaseDate,
+                purchase_date: purchaseDate,
+                release_price: releasePrice,
+                current_price: currentPrice,
+                purchasePrice: purchasePrice,
                 quantity: request.body.quantity,
                 artist: request.body.artist,
                 label: request.body.label
