@@ -12,7 +12,7 @@
     <label v-if="vinyl.quantity != null">Quantité : {{vinyl.quantity}}</label>
     <div>
       <router-link :to="'/edit/' + vinyl.id"><a class="btn btn-theme btn-margin">Modifier</a></router-link>
-      <router-link to="/"><a class="btn btn-theme04 btn-margin" v-on:click="removeVinyl()">Supprimer</a></router-link>
+      <a href="#" class="btn btn-theme04 btn-margin" v-on:click="removeVinyl()">Supprimer</a>
     </div>
   </div>
 </template>
@@ -40,7 +40,9 @@ export default {
   methods: {
     removeVinyl() {
       axios.delete('http://localhost:3001/vinyl/' + this.$route.params.id)
-      .catch(err => {
+          .then(response => {
+            this.$router.push('/')
+          }).catch(err => {
         console.log(err)
       })
     }

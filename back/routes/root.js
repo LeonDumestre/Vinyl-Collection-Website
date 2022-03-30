@@ -60,6 +60,7 @@ export default async function (fastify, opts) {
                 vinyl_id: id
             }
         })
+        res.send("Supprimé")
     });
 
     fastify.get('/tracks', async function (request, reply) {
