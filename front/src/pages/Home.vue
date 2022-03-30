@@ -13,13 +13,20 @@ export default {
     vinyls: [],
     pageSize: 7,
     currentPage: 0,
-    visibleVinyls: []
+    visibleVinyls: [],
+    totalCollectionPrice: 0
   }),
   mounted() {
     axios.get('http://localhost:3001/vinyls').then(response => {
       console.log(response.data)
       this.vinyls = response.data
       this.updateVisibleVinyls()
+    }).catch(err => {
+      console.log(err)
+    })
+    axios.get('http://localhost:3001/vinyls/estimate').then(response => {
+      console.log(response.data)
+      this.totalCollectionPrice = response.data
     }).catch(err => {
       console.log(err)
     })
@@ -40,8 +47,9 @@ export default {
 </script>
 
 <template>
+  <h2 id="title-padding">Vous avez {{ vinyls.length }} vinyles estimés à {{totalCollectionPrice}} €</h2>
   <ul class="container inline-b">
-    <Vinyl v-for="vinyl in visibleVinyls" :vinyl="vinyl" />
+    <Vinyl v-for="vinyl in visibleVinyls" :vinyl="vinyl"/>
     <Pagination
         v-bind:vinyls="vinyls"
         v-on:page:update="updatePage"
