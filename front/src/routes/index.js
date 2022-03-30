@@ -6,7 +6,7 @@ import Add from "../pages/Add.vue";
 const routes = [
     { path: '/', name: 'Home', component: Home },
     { path: '/add', name: 'Add', component: Add },
-    { path: '/edit', name: 'Edit', component: Edit },
+    { path: '/edit/:id', name: 'Edit', component: Edit },
     { path: '/details/:id', name: 'Details', component: Details }
 ]
 
