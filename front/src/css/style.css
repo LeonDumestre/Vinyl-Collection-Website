@@ -94,6 +94,12 @@ a.btn {
     margin: 10px auto;
 }
 
+.details-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
 /*________________________________MON CSS________________________________*/
 
 ul li {
