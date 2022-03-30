@@ -4,12 +4,20 @@ import '../database.js'
 import {Vinyl, Track} from "../database.js";
 
 export default async function (fastify, opts) {
+    fastify.get('/vinyls/estimate', async function (request, reply) {
+        let array = await Vinyl.findAll()
+        let price = 0
+        for (let i = 0; i < array.length; i++) {
+            price += array[i].current_price * array[i].quantity
+        }
+        reply.send(price)
+    });
     fastify.get('/vinyls', async function (request, reply) {
         reply.send(await Vinyl.findAll())
-    })
+    });
     fastify.get('/vinyl/:id', async function (request, reply) {
         reply.send(await Vinyl.findByPk(request.params.id));
-    })
+    });
     fastify.post('/vinyl/add', async function (request, reply) {
         reply.send(request.body.year_purchase_date)
         if (!request.body?.name && !request.body?.artist && !request.body?.label && !request.body?.quantity && !request.body?.image) {
@@ -28,7 +36,7 @@ export default async function (fastify, opts) {
                 label: request.body.label
             }))
         }
-    })
+    });
     fastify.put('/vinyl/edit/:id', async function (params, res) {
         const id = params.body.id;
         if (params.body) {
@@ -56,10 +64,10 @@ export default async function (fastify, opts) {
 
     fastify.get('/tracks', async function (request, reply) {
         reply.send(await Track.findAll())
-    })
+    });
     fastify.get('/track/:id', async function (request, reply) {
         reply.send(await Track.findByPk(request.params.id));
-    })
+    });
     fastify.put('/track/:id', async function (params, res) {
         const id = params.body.id;
         if (params.body) {
@@ -79,5 +87,4 @@ export default async function (fastify, opts) {
             }
         })
     });
-
 }
