@@ -8,7 +8,7 @@
         <input type="text" class="input-group" placeholder="Nom de l'album" v-model="name" required/>
         <input type="text" class="input-group" placeholder="Nom de l'artiste / groupe" v-model="artist" required/>
         <input type="text" class="input-group" placeholder="Label de l'album" v-model="label" required/>
-        <input type="file" class="input-group" accept=".jpg" required/>
+        <input type="text" class="input-group" placeholder="Lien de l'image" v-model="image" required/>
       </div>
 
       <div class="row">
@@ -63,6 +63,7 @@ export default {
     name: '',
     artist: '',
     label: '',
+    image: '',
     month_release_date: '',
     year_release_date: '',
     month_purchase_date: '',
@@ -78,6 +79,7 @@ export default {
         name: this.name,
         artist: this.artist,
         label: this.label,
+        image: this.image,
         month_release_date: this.month_release_date,
         year_release_date: this.year_release_date,
         month_purchase_date: this.month_purchase_date,
