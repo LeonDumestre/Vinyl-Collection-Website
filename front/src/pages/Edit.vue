@@ -15,8 +15,8 @@
         <div class="col-half">
           <h4>Date de sortie</h4>
           <div class="input-group">
-            <div class="col-third"><input class="month" type="number" placeholder="MM" min="1" max="12" v-model="vinyl.month_release_date"/></div>
-            <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="vinyl.year_release_date"/></div>
+            <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="vinyl.year_release_date"/>
+            </div>
           </div>
         </div>
 
@@ -33,8 +33,8 @@
         <div class="col-half">
           <h4>Date d'acquisition</h4>
           <div class="input-group">
-            <div class="col-third"><input class="month" type="number" placeholder="MM" min="1" max="12" v-model="vinyl.month_purchase_date"/></div>
-            <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="vinyl.year_purchase_date"/></div>
+            <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="vinyl.year_purchase_date"/>
+            </div>
           </div>
         </div>
         <div class="col-half">
@@ -63,9 +63,8 @@ export default {
   }),
   methods: {
     editVinyl() {
-      axios.post('http://localhost:3001/vinyl/edit', {
-        vinyl: this.vinyl,
-      }).then(response => {
+      axios.put('http://localhost:3001/vinyl/edit/' + this.$route.params.id, this.vinyl).then(response => {
+        console.log(response.data)
         this.$router.push('/')
       }).catch(err => {
         console.log(err)

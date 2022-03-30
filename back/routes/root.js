@@ -11,36 +11,45 @@ export default async function (fastify, opts) {
         reply.send(await Vinyl.findByPk(request.params.id));
     })
     fastify.post('/vinyl/add', async function (request, reply) {
-        if (!request.body?.name && !request.body?.artist && !request.body?.label && !request.body?.month_release_date
-            && !request.body?.year_release_date && !request.body?.month_purchase_date && !request.body?.year_purchase_date
-            && !request.body?.release_price && !request.body?.current_price && !request.body?.purchase_price && !request.body?.quantity) {
+        reply.send(request.body.year_purchase_date)
+        if (!request.body?.name && !request.body?.artist && !request.body?.label && !request.body?.quantity && !request.body?.image) {
             reply.status(400).send('Le nom est obligatoire')
         } else {
-            let releaseDate = request.body.month_release_date + "/" + request.body.year_release_date === "/" ? null : request.body.month_release_date + "/" + request.body.year_release_date
-            let purchaseDate = request.body.month_purchase_date + "/" + request.body.year_purchase_date === "/" ? null : request.body.month_purchase_date + "/" + request.body.year_purchase_date
-            let releasePrice = request.body.release_price === 0 ? null : request.body.release_price
-            let currentPrice = request.body.current_price === 0 ? null : request.body.current_price
-            let purchasePrice = request.body.purchase_price === 0 ? null : request.body.purchase_price
-
             reply.send(await Vinyl.create({
                 name: request.body.name,
-                release_date: releaseDate,
-                purchase_date: purchaseDate,
-                release_price: releasePrice,
-                current_price: currentPrice,
-                purchasePrice: purchasePrice,
+                release_date: request.body.year_release_date,
+                purchase_date: request.body.year_purchase_date,
+                release_price: request.body.release_price === 0 ? null : request.body.release_price,
+                current_price: request.body.current_price === 0 ? null : request.body.current_price,
+                purchase_price: request.body.purchase_price === 0 ? null : request.body.purchase_price,
                 quantity: request.body.quantity,
                 artist: request.body.artist,
+                image: request.body.image,
                 label: request.body.label
             }))
         }
     })
-
+    fastify.put('/vinyl/edit/:id', async function (params, res) {
+        const id = params.body.id;
+        if (params.body) {
+            await Vinyl.update(params.body, {
+                where: {
+                    id
+                }
+            })
+            res.send("Mis à jour")
+        }
+    });
     fastify.delete('/vinyl/:id', async function ({params, body}, res) {
         const id = params.id;
         await Vinyl.destroy({
             where: {
                 id
+            }
+        })
+        await Track.destroy({
+            where: {
+                vinyl_id: id
             }
         })
     });
@@ -51,6 +60,17 @@ export default async function (fastify, opts) {
     fastify.get('/track/:id', async function (request, reply) {
         reply.send(await Track.findByPk(request.params.id));
     })
+    fastify.put('/track/:id', async function (params, res) {
+        const id = params.body.id;
+        if (params.body) {
+            await Track.update(params.body, {
+                where: {
+                    id
+                }
+            })
+            res.send("Mis à jour")
+        }
+    });
     fastify.delete('/track/:id', async function ({params, body}, res) {
         const id = params.id;
         await Track.destroy({

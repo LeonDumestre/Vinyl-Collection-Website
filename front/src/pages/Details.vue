@@ -1,20 +1,15 @@
 <template>
   <div class="container details-container">
     <h2>{{vinyl.name}}</h2>
-    <div class="row">
-        <img :src="vinyl.image" class="" width="400" height="400">
-        <div>
-          <label v-if="vinyl.artist != null">Groupe / Artiste : {{vinyl.artist}}</label>
-          <label v-if="vinyl.label != null">Label : {{vinyl.label}}</label>
-          <label v-if="vinyl.release_date != null">Date de sortie : {{vinyl.release_date}}</label>
-          <label v-if="vinyl.release_price != null">Prix à la sortie : {{vinyl.release_price}} €</label>
-          <label v-if="vinyl.purchase_date != null">Date d'achat : {{vinyl.purchase_date}}</label>
-          <label v-if="vinyl.purchase_price != null">Prix d'achat : {{vinyl.purchase_price}} €</label>
-          <label v-if="vinyl.current_price != null">Prix actuel : {{vinyl.current_price}} €</label>
-          <label v-if="vinyl.quantity != null">Quantité : {{vinyl.quantity}}</label>
-        </div>
-    </div>
-
+    <img id="img-details" :src="vinyl.image" class="" width="400" height="400">
+    <label v-if="vinyl.artist != null">Groupe / Artiste : {{vinyl.artist}}</label>
+    <label v-if="vinyl.label != null">Label : {{vinyl.label}}</label>
+    <label v-if="vinyl.purchase_date != null">Date d'achat : {{vinyl.purchase_date}}</label>
+    <label v-if="vinyl.release_date != null">Date de sortie : {{vinyl.release_date}}</label>
+    <label v-if="vinyl.release_price != null">Prix à la sortie : {{vinyl.release_price}} €</label>
+    <label v-if="vinyl.purchase_price != null">Prix d'achat : {{vinyl.purchase_price}} €</label>
+    <label v-if="vinyl.current_price != null">Prix actuel : {{vinyl.current_price}} €</label>
+    <label v-if="vinyl.quantity != null">Quantité : {{vinyl.quantity}}</label>
     <router-link :to="'/edit/' + vinyl.id"><a class="btn btn-theme ">Modifier le vinyle</a></router-link>
   </div>
 </template>
