@@ -15,7 +15,6 @@
         <div class="col-half">
           <h4>Date de sortie</h4>
           <div class="input-group">
-            <div class="col-third"><input class="month" type="number" placeholder="MM" min="1" max="12" v-model="month_release_date"/></div>
             <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="year_release_date"/></div>
           </div>
         </div>
@@ -33,7 +32,6 @@
         <div class="col-half">
           <h4>Date d'acquisition</h4>
           <div class="input-group">
-            <div class="col-third"><input class="month" type="number" placeholder="MM" min="1" max="12" v-model="month_purchase_date"/></div>
             <div class="col-third"><input class="year" type="number" placeholder="AAAA" min="1940" max="3000" v-model="year_purchase_date"/></div>
           </div>
         </div>
@@ -64,9 +62,7 @@ export default {
     artist: '',
     label: '',
     image: '',
-    month_release_date: '',
     year_release_date: '',
-    month_purchase_date: '',
     year_purchase_date: '',
     release_price: 0,
     current_price: 0,
@@ -80,9 +76,7 @@ export default {
         artist: this.artist,
         label: this.label,
         image: this.image,
-        month_release_date: this.month_release_date,
         year_release_date: this.year_release_date,
-        month_purchase_date: this.month_purchase_date,
         year_purchase_date: this.year_purchase_date,
         release_price: this.release_price,
         current_price: this.current_price,
