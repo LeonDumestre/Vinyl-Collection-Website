@@ -23,8 +23,8 @@
         <div class="col-half">
           <h4>Prix à la sortie / actuel</h4>
           <div class="input-group">
-            <div class="col-third"><input type="number" class="input-group" placeholder="Prix à la sortie" v-model="release_price"/></div>
-            <div class="col-third"><input type="number" class="input-group" placeholder="Prix actuel" v-model="current_price"/></div>
+            <div class="col-third"><input type="number" class="input-group" min="0" placeholder="Prix à la sortie" v-model="release_price"/></div>
+            <div class="col-third"><input type="number" class="input-group" min="0" placeholder="Prix actuel" v-model="current_price"/></div>
           </div>
         </div>
       </div>
@@ -38,8 +38,9 @@
           </div>
         </div>
         <div class="col-half">
-          <h4>Quantité</h4>
-          <div class="col-third"><input type="number" min="0" max="999" v-model="quantity"/></div>
+          <h4>Quantité / Prix d'achat</h4>
+          <div class="col-third"><input type="number" min="0" max="999" v-model="quantity" required/></div>
+          <div class="col-third"><input type="number" class="input-group" min="0" placeholder="Prix d'achat" v-model="purchase_price"/></div>
         </div>
       </div>
 
@@ -86,11 +87,13 @@ export default {
         purchase_price: this.purchase_price,
         quantity: this.quantity
       }).then(response => {
-        console.log(response.data)
+        this.$router.push('/')
       }).catch(err => {
         console.log(err)
       })
-    }
+    },
+
+
   }
 }
 </script>
