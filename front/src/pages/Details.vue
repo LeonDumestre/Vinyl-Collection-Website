@@ -10,7 +10,10 @@
     <label v-if="vinyl.purchase_price != null">Prix d'achat : {{vinyl.purchase_price}} €</label>
     <label v-if="vinyl.current_price != null">Prix actuel : {{vinyl.current_price}} €</label>
     <label v-if="vinyl.quantity != null">Quantité : {{vinyl.quantity}}</label>
-    <router-link :to="'/edit/' + vinyl.id"><a class="btn btn-theme ">Modifier le vinyle</a></router-link>
+    <div>
+      <router-link :to="'/edit/' + vinyl.id"><a class="btn btn-theme btn-margin">Modifier</a></router-link>
+      <router-link to="/"><a class="btn btn-theme04 btn-margin" v-on:click="removeVinyl()">Supprimer</a></router-link>
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,14 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  methods: {
+    removeVinyl() {
+      axios.delete('http://localhost:3001/vinyl/' + this.$route.params.id)
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

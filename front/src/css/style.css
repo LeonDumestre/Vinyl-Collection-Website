@@ -83,7 +83,12 @@ body {
 a.btn {
     font-weight: 750;
     font-size: 15px;
-    float: left;
+    margin-top: 12px;
+}
+
+button.btn {
+    font-weight: 750;
+    font-size: 15px;
     margin-top: 12px;
 }
 
@@ -98,6 +103,11 @@ a.btn {
     display: flex;
     flex-direction: column;
     margin: 10px auto;
+}
+
+.btn-margin {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /*________________________________MON CSS________________________________*/
@@ -221,7 +231,7 @@ a, a:hover, a:focus {
 }
 
 .btn-theme04 {
-  color: #fff;
+  color: #2E2E2E;
   background-color: #ed5565;
   border-color: #da4453;
 }
